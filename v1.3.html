@@ -1,0 +1,2928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+    <title>OUSSAMA SEMAMA</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --accent-color: #e74c3c;
+            --background-color: #f4f7f6;
+            --text-color: #2c3e50;
+            --card-background: #ffffff;
+        }
+        :root.dark-mode {
+            --background-color: #121212;
+            --text-color: #e0e0e0;
+            --card-background: #1e1e1e;
+            --header-background: #1e1e1e;
+            --box-shadow: 0 2px 10px rgba(255,255,255,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            width: 100%;
+            background-color: var(--card-background);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            margin-left: 1.5rem;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+        .fa-linkedin {
+            font-size: 1.2em;
+            color: #0A66C2;
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+        .fa-linkedin:hover {
+            transform: scale(1.2);
+        }
+        .glowing-text {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-shadow: 0 0 10px #00d4ff, 0 0 20px #00d4ff, 0 0 30px #007acc;
+            animation: glow 2s infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px #3498db, 0 0 10px #3498db, 0 0 20px #3498db;
+            }
+            to {
+                text-shadow: 0 0 20px #00d4ff, 0 0 30px #007acc, 0 0 40px #007acc;
+            }
+        }
+        
+        /* Language Switcher */
+        .language-switcher {
+            position: relative;
+            margin-right: 1.5rem;
+        }
+        .language-btn .flag {
+            font-size: 1.2rem;
+        }
+
+        .language-btn {
+            background: var(--card-background);
+            border: 2px solid var(--primary-color);
+            padding: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        .language-btn:hover {
+            background: var(--background-color);
+            transform: translateY(-2px);
+        }
+
+        .language-options {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            background: var(--card-background);
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            display: none;
+            z-index: 1000;
+            min-width: 150px;
+            border: 1px solid rgba(0,0,0,0.1);
+            padding: 0.5rem;
+        }
+
+        .language-options.show {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .language-option {
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+        .language-option .flag {
+            font-size: 1.2rem;
+        }
+
+        .language-option:hover {
+            background-color: var(--background-color);
+            transform: translateX(5px);
+        }
+        .language-option.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        /*Dark Mode  */
+        .theme-toggles {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .theme-toggle, .language-toggle {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .theme-toggle:hover, .language-toggle:hover {
+            color: var(--primary-color);
+        }
+        /* Profile Picture */
+        .profile-picture-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .profile-picture {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .dynamic-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+            animation: moveBackground 20s linear infinite;
+        }
+
+        @keyframes moveBackground {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            100% {
+                transform: translate(100px, 100px) rotate(360deg);
+            }
+        }
+        /* home Section */
+        #home {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(52,152,219,0.1), rgba(46,204,113,0.1));
+        }
+
+        .home-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .home-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .home-content p {
+            font-size: 1.25rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        @media (max-width: 768px) {
+            .header-content {
+                position: relative;
+                padding: 1rem;
+                justify-content: flex-end; /* Changed to flex-end to accommodate centered logo */
+            }
+
+            .logo {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                width: auto;
+                text-align: center;
+            }
+
+            nav {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: var(--card-background);
+                padding: 0.5rem;
+                box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+                z-index: 1000;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                gap: 0.5rem;
+            }
+
+            nav a, .theme-toggle, .language-switcher {
+                flex: 0 0 auto;
+                margin: 0 0.25rem;
+                font-size: 0.9rem;
+                white-space: nowrap;
+            }
+
+            .language-options {
+                bottom: 100%;
+                top: auto;
+                right: 0;
+            }
+
+            .text-content {
+                min-height: 200px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                position: relative;
+            }
+
+            #dynamicText {
+                min-height: 80px;
+                height: auto;
+                margin: 0;
+                position: relative;
+            }
+
+            #home {
+                padding-top: 80px;
+                padding-bottom: 80px;
+            }
+
+            .home-content {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding: 0 1rem;
+            }
+
+            .profile-picture-container {
+                width: 200px;
+                height: 200px;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+
+            .contact-form {
+                margin: 0 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav a {
+                font-size: 0.9rem;
+                margin: 0;
+            }
+
+            .home-content h1 {
+                font-size: 2rem;
+            }
+
+            .profile-picture-container {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--text-color);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background-color: var(--primary-color);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Skills */
+        :root {
+        --primary-color: #3498db;
+        --secondary-color: #2ecc71;
+        --accent-color: #e74c3c;
+        --background-color: #f4f7f6;
+        --text-color: #2c3e50;
+        --card-background: #ffffff;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Inter', sans-serif;
+        line-height: 1.6;
+        background-color: var(--background-color);
+    }
+
+    /* Skills Section */
+    .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    justify-items: center; /* Centers the content horizontally */
+    text-align: center;  /* Centers text within the cards */
+}
+
+.skill-card {
+    background-color: var(--card-background);
+    padding: 2rem;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-10px);  /* Slight hover effect */
+}
+
+.skill-card i {
+    font-size: 4rem;
+    color: var(--primary-color);  /* Icon color */
+    margin-bottom: 1rem;
+}
+
+.skill-card h3 {
+    margin-bottom: 0.5rem;
+    color: var(--text-color);  /* Title color */
+}
+
+.skill-card p {
+    font-size: 1rem;
+    color: var (--text-color);  /* Description text color */
+}
+
+
+
+    /* Continuous horizontal scrolling animation */
+    @keyframes scrollRibbon {
+        0% {
+            transform: translateX(100%);
+        }
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+        /* Projects */
+        .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.project-card {
+    background-color: var(--card-background);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+}
+
+.project-image {
+    width: 100%;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.project-details {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-details h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    color: var(--text-color);
+}
+
+.project-details p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    flex: 1;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.project-tag {
+    padding: 0.25rem 0.75rem;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 15px;
+    font-size: 0.8rem;
+}
+        .projects button:hover {
+            background-color: #00d4ff;
+            transform: scale(1.1);
+        }
+        .projects button {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .projects {
+            text-align: center;
+        }
+
+        /* Contact */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--card-background);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+
+        .contact-form button {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Footer */
+        <footer>
+    <div class="social-links">
+        <a href="https://www.linkedin.com/in/oussama-semama" target="_blank">
+            <i class="fab fa-linkedin"></i>
+        </a>
+    </div>
+    <p>&copy; 2025 Oussama SEMAMA. All Rights Reserved.</p>
+</footer>
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav {
+                margin-top: 1rem;
+            }
+
+            nav a {
+                margin: 0 0.5rem;
+            }
+
+            .home-content {
+                text-align: center;
+            }
+
+            .home-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .cta-buttons {
+                justify-content: center;
+            }
+        }
+        /* Fix for dynamic text movement */
+        .text-content {
+            min-height: auto;
+            margin-bottom: 2rem;
+        }
+        
+        #dynamicText {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+        
+        .role {
+            font-size: 1.25rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .text-content {
+                min-height: 150px;
+            }
+            
+            #dynamicText {
+                min-height: 3rem;
+                font-size: 2rem !important;
+            }
+        }
+
+        /* Update text content styles */
+        .text-content {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 1rem;
+            overflow: hidden;
+            height: auto;
+        }
+
+        #dynamicText, .role {
+            position: relative;
+            width: 100%;
+            text-align: left;
+            transform: none;
+            opacity: 1;
+        }
+
+        /* Update mobile styles */
+        @media (max-width: 768px) {
+            html, body {
+                overflow-x: hidden;
+                position: relative;
+                width: 100%;
+            }
+
+            .container {
+                width: 100%;
+                max-width: 100%;
+                padding: 0 1rem;
+            }
+
+            #home {
+                min-height: 100vh;
+                height: auto;
+                padding: 6rem 0;
+            }
+
+            .home-content {
+                flex-direction: column-reverse;
+                gap: 2rem;
+                padding: 1rem;
+                height: auto;
+            }
+
+            .profile-picture-container {
+                width: min(200px, 50vw);
+                height: min(200px, 50vw);
+            }
+        }
+        /* Update mobile language switcher styles */
+        @media (max-width: 768px) {
+            .language-switcher {
+                position: relative;
+                margin: 0;
+                z-index: 1001; /* Ensure it's above other elements */
+            }
+
+            .language-options {
+                position: absolute;
+                bottom: calc(100% + 10px);
+                left: 50%;
+                transform: translateX(-50%);
+                width: auto;
+                min-width: 120px;
+                background: var(--card-background);
+                border-radius: 8px;
+                box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            }
+
+            nav {
+                padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+            }
+        }
+        .logo {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        /* Update skills and projects grid */
+        .skills-grid, .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            justify-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .skills-grid, .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+
+            .language-switcher {
+                position: relative;
+                margin: 0;
+                z-index: 1001;
+            }
+
+            .language-options {
+                position: fixed;
+                bottom: 80px; /* Adjust based on your bottom nav height */
+                left: 50%;
+                transform: translateX(-50%);
+                width: 200px;
+                background: var(--card-background);
+                border-radius: 8px;
+                box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+                display: none;
+            }
+
+            .language-options.show {
+                display: block;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .skills-grid, .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        /* Skills grid - desktop */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    justify-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Projects grid - desktop */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Show 3 projects per row */
+    gap: 2rem;
+    justify-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 skills per row on mobile */
+        gap: 1rem;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr; /* 1 project per row on mobile */
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+
+    .project-card {
+        width: 100%; /* Full width on mobile */
+        max-width: 400px; /* Maximum width for better readability */
+        margin: 0 auto;
+    }
+}
+
+/* Small mobile adjustments */
+@media (max-width: 480px) {
+    .skills-grid {
+        grid-template-columns: repeat(3, 1fr); /* Keep 2 skills per row */
+        gap: 0.8rem;
+    }
+    .projects-grid {
+        grid-template-columns: 1fr; /* 1 project per row on mobile */
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+}
+    .more-projects-container {
+        text-align: center;
+        margin-top: 3rem;
+    }
+
+    .more-projects-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .more-projects-btn:hover {
+        background-color: var(--secondary-color);
+        transform: translateY(-2px);
+    }
+
+    .more-projects-btn i {
+        transition: transform 0.3s ease;
+    }
+
+    .more-projects-btn:hover i {
+        transform: translateX(5px);
+    }
+    .project-card {
+    width: 100%;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.project-image {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.1);
+}
+
+.project-details {
+    padding: 1.5rem;
+    background: var(--card-background);
+}
+
+.project-tags {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.project-tag {
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    background: var(--primary-color);
+    color: white;
+    font-size: 0.9rem;
+}
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0a192f 0%, #172a45 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.battery-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.battery {
+    width: 80px;
+    height: 160px;
+    border: 3px solid #64ffda;
+    border-radius: 15px 15px 5px 5px;
+    position: relative;
+    background: rgba(100, 255, 218, 0.1);
+    box-shadow: 0 0 20px rgba(100, 255, 218, 0.2);
+}
+
+.battery::after {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 10px;
+    background: #64ffda;
+    border-radius: 5px 5px 0 0;
+}
+
+.battery-level {
+    position: absolute;
+    bottom: 3px;
+    left: 3px;
+    right: 3px;
+    height: 0%;
+    background: linear-gradient(0deg, 
+        rgba(100, 255, 218, 1) 0%,
+        rgba(0, 255, 135, 0.8) 100%
+    );
+    border-radius: 3px;
+    transition: height 0.3s ease;
+    animation: chargeBattery 3s ease-out forwards;
+}
+
+.battery-level::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        transparent 100%
+    );
+    animation: batteryShine 2s linear infinite;
+}
+
+.percentage {
+    font-family: 'Courier New', monospace;
+    font-size: 1.5rem;
+    color: #64ffda;
+    text-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+    font-weight: bold;
+}
+
+.charging-text {
+    color: #64ffda;
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    opacity: 0.8;
+    margin-top: 5px;
+}
+
+/* Add new animations */
+@keyframes chargeBattery {
+    0% {
+        height: 0%;
+        background-position: 0% 0%;
+    }
+    50% {
+        height: 70%;
+    }
+    80% {
+        height: 90%;
+    }
+    100% {
+        height: 96%;
+        background-position: 0% 100%;
+    }
+}
+
+@keyframes batteryShine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.battery-segments {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    right: 3px;
+    bottom: 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 2px;
+}
+
+.segment {
+    height: 3px;
+    background: rgba(100, 255, 218, 0.2);
+    transform: scaleX(0.9);
+}
+.circuit-board {
+    position: relative;
+    width: 500px;
+    height: 400px;
+    background: #162b3c;
+    border-radius: 15px;
+    box-shadow: 0 0 50px rgba(100, 255, 218, 0.2);
+    overflow: hidden;
+}
+
+.circuit-tracks {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(90deg, transparent 49%, #1a3344 49%, #1a3344 51%, transparent 51%),
+        linear-gradient(0deg, transparent 49%, #1a3344 49%, #1a3344 51%, transparent 51%);
+    background-size: 40px 40px;
+}
+
+.component {
+    position: absolute;
+    background: #203847;
+    border: 2px solid #64ffda;
+    border-radius: 5px;
+}
+
+.ic-chip {
+    width: 100px;
+    height: 60px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    padding: 5px;
+    gap: 2px;
+}
+
+.ic-pin {
+    height: 100%;
+    background: #64ffda;
+    animation: pinPulse 2s infinite;
+}
+
+
+.trace {
+    position: absolute;
+    background: #64ffda;
+    height: 2px;
+}
+
+.electron {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #64ffda;
+    border-radius: 50%;
+    filter: blur(1px);
+    box-shadow: 0 0 10px #64ffda;
+}
+
+.measurements {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 30px;
+    font-family: 'Courier New', monospace;
+    color: #64ffda;
+}
+
+.measurement {
+    text-align: center;
+}
+
+.measurement-value {
+    font-size: 1.2rem;
+    text-shadow: 0 0 10px #64ffda;
+}
+
+.measurement-label {
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+@keyframes pinPulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+@keyframes chargePulse {
+    0%, 100% { transform: scaleY(0.8); }
+    50% { transform: scaleY(1.2); }
+}
+
+@keyframes ledBlink {
+    0%, 100% { box-shadow: 0 0 15px #64ffda; background: #64ffda; }
+    50% { box-shadow: none; background: transparent; }
+}
+
+@keyframes electronFlow {
+    0% { transform: translateX(0) translateY(0); opacity: 1; }
+    100% { transform: translateX(100px) translateY(0); opacity: 0; }
+}
+
+.component {
+    /* Update existing component styles */
+    box-shadow: 0 0 10px rgba(100, 255, 218, 0.2);
+    transition: all 0.3s ease;
+}
+
+.ic-chip {
+    /* Update IC chip styles */
+    background: #1a3344;
+    padding: 8px;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 3px;
+    border: 1px solid #64ffda;
+}
+
+.ic-label {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #64ffda;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    text-shadow: 0 0 5px #64ffda;
+}
+
+
+.solder-joint {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #64ffda;
+    border-radius: 50%;
+    filter: blur(1px);
+    opacity: 0.6;
+}
+
+.trace-glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #64ffda;
+    filter: blur(3px);
+    opacity: 0;
+    animation: traceGlow 2s linear infinite;
+}
+
+.component-shadow {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    filter: blur(2px);
+    transform: translateY(2px);
+}
+
+/* Add new animations */
+@keyframes traceGlow {
+    0%, 100% { opacity: 0.1; }
+    50% { opacity: 0.3; }
+}
+
+@keyframes componentHeat {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.2); }
+}
+
+/* Add via holes */
+.via {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #1a3344;
+    border: 1px solid #64ffda;
+    border-radius: 50%;
+}
+
+/* Add oscilloscope display */
+.oscilloscope {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 120px;
+    height: 80px;
+    border: 2px solid #64ffda;
+    border-radius: 5px;
+    overflow: hidden;
+    background: rgba(26, 51, 68, 0.8);
+}
+
+.signal-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #64ffda;
+    animation: signalWave 2s linear infinite;
+}
+
+@keyframes signalWave {
+    0% { transform: translateY(0) scaleY(1); }
+    25% { transform: translateY(-20px) scaleY(1.5); }
+    50% { transform: translateY(0) scaleY(1); }
+    75% { transform: translateY(20px) scaleY(0.5); }
+    100% { transform: translateY(0) scaleY(1); }
+}
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0a192f 0%, #172a45 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.battery-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.battery {
+    width: 80px;
+    height: 160px;
+    border: 3px solid #64ffda;
+    border-radius: 15px 15px 5px 5px;
+    position: relative;
+    background: rgba(100, 255, 218, 0.1);
+    box-shadow: 0 0 20px rgba(100, 255, 218, 0.2);
+}
+
+.battery::after {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 10px;
+    background: #64ffda;
+    border-radius: 5px 5px 0 0;
+}
+
+.battery-level {
+    position: absolute;
+    bottom: 3px;
+    left: 3px;
+    right: 3px;
+    height: 0%;
+    background: linear-gradient(0deg, 
+        rgba(100, 255, 218, 1) 0%,
+        rgba(0, 255, 135, 0.8) 100%
+    );
+    border-radius: 3px;
+    transition: height 0.3s ease;
+    animation: chargeBattery 3s ease-out forwards;
+}
+
+.battery-level::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        transparent 100%
+    );
+    animation: batteryShine 2s linear infinite;
+}
+
+.percentage {
+    font-family: 'Courier New', monospace;
+    font-size: 1.5rem;
+    color: #64ffda;
+    text-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+    font-weight: bold;
+}
+
+.charging-text {
+    color: #64ffda;
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    opacity: 0.8;
+    margin-top: 5px;
+}
+
+/* Add new animations */
+@keyframes chargeBattery {
+    0% {
+        height: 0%;
+        background-position: 0% 0%;
+    }
+    50% {
+        height: 70%;
+    }
+    80% {
+        height: 90%;
+    }
+    100% {
+        height: 96%;
+        background-position: 0% 100%;
+    }
+}
+
+@keyframes batteryShine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.battery-segments {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    right: 3px;
+    bottom: 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 2px;
+}
+
+.segment {
+    height: 3px;
+    background: rgba(100, 255, 218, 0.2);
+    transform: scaleX(0.9);
+}
+.circuit-board {
+    position: relative;
+    width: 500px;
+    height: 400px;
+    background: #162b3c;
+    border-radius: 15px;
+    box-shadow: 0 0 50px rgba(100, 255, 218, 0.2);
+    overflow: hidden;
+}
+
+.circuit-tracks {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(90deg, transparent 49%, #1a3344 49%, #1a3344 51%, transparent 51%),
+        linear-gradient(0deg, transparent 49%, #1a3344 49%, #1a3344 51%, transparent 51%);
+    background-size: 40px 40px;
+}
+
+.component {
+    position: absolute;
+    background: #203847;
+    border: 2px solid #64ffda;
+    border-radius: 5px;
+}
+
+.ic-chip {
+    width: 100px;
+    height: 60px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    padding: 5px;
+    gap: 2px;
+}
+
+.ic-pin {
+    height: 100%;
+    background: #64ffda;
+    animation: pinPulse 2s infinite;
+}
+
+
+.trace {
+    position: absolute;
+    background: #64ffda;
+    height: 2px;
+}
+
+.electron {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #64ffda;
+    border-radius: 50%;
+    filter: blur(1px);
+    box-shadow: 0 0 10px #64ffda;
+}
+
+.measurements {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 30px;
+    font-family: 'Courier New', monospace;
+    color: #64ffda;
+}
+
+.measurement {
+    text-align: center;
+}
+
+.measurement-value {
+    font-size: 1.2rem;
+    text-shadow: 0 0 10px #64ffda;
+}
+
+.measurement-label {
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+@keyframes pinPulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+@keyframes chargePulse {
+    0%, 100% { transform: scaleY(0.8); }
+    50% { transform: scaleY(1.2); }
+}
+
+@keyframes ledBlink {
+    0%, 100% { box-shadow: 0 0 15px #64ffda; background: #64ffda; }
+    50% { box-shadow: none; background: transparent; }
+}
+
+@keyframes electronFlow {
+    0% { transform: translateX(0) translateY(0); opacity: 1; }
+    100% { transform: translateX(100px) translateY(0); opacity: 0; }
+}
+
+.component {
+    /* Update existing component styles */
+    box-shadow: 0 0 10px rgba(100, 255, 218, 0.2);
+    transition: all 0.3s ease;
+}
+
+.ic-chip {
+    /* Update IC chip styles */
+    background: #1a3344;
+    padding: 8px;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 3px;
+    border: 1px solid #64ffda;
+}
+
+.ic-label {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #64ffda;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    text-shadow: 0 0 5px #64ffda;
+}
+
+
+.solder-joint {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #64ffda;
+    border-radius: 50%;
+    filter: blur(1px);
+    opacity: 0.6;
+}
+
+.trace-glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #64ffda;
+    filter: blur(3px);
+    opacity: 0;
+    animation: traceGlow 2s linear infinite;
+}
+
+.component-shadow {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    filter: blur(2px);
+    transform: translateY(2px);
+}
+
+/* Add new animations */
+@keyframes traceGlow {
+    0%, 100% { opacity: 0.1; }
+    50% { opacity: 0.3; }
+}
+
+@keyframes componentHeat {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.2); }
+}
+
+/* Add via holes */
+.via {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #1a3344;
+    border: 1px solid #64ffda;
+    border-radius: 50%;
+}
+
+/* Add oscilloscope display */
+.oscilloscope {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 120px;
+    height: 80px;
+    border: 2px solid #64ffda;
+    border-radius: 5px;
+    overflow: hidden;
+    background: rgba(26, 51, 68, 0.8);
+}
+
+.signal-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #64ffda;
+    animation: signalWave 2s linear infinite;
+}
+
+@keyframes signalWave {
+    0% { transform: translateY(0) scaleY(1); }
+    25% { transform: translateY(-20px) scaleY(1.5); }
+    50% { transform: translateY(0) scaleY(1); }
+    75% { transform: translateY(20px) scaleY(0.5); }
+    100% { transform: translateY(0) scaleY(1); }
+}
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0a192f 0%, #172a45 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.battery-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.battery {
+    width: 80px;
+    height: 160px;
+    border: 3px solid #64ffda;
+    border-radius: 15px 15px 5px 5px;
+    position: relative;
+    background: rgba(100, 255, 218, 0.1);
+    box-shadow: 0 0 20px rgba(100, 255, 218, 0.2);
+}
+
+.battery::after {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 10px;
+    background: #64ffda;
+    border-radius: 5px 5px 0 0;
+}
+
+.battery-level {
+    position: absolute;
+    bottom: 3px;
+    left: 3px;
+    right: 3px;
+    height: 0%;
+    background: linear-gradient(0deg, 
+        rgba(100, 255, 218, 1) 0%,
+        rgba(0, 255, 135, 0.8) 100%
+    );
+    border-radius: 3px;
+    transition: height 0.3s ease;
+    animation: chargeBattery 3s ease-out forwards;
+}
+
+.battery-level::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        transparent 100%
+    );
+    animation: batteryShine 2s linear infinite;
+}
+
+.percentage {
+    font-family: 'Courier New', monospace;
+    font-size: 1.5rem;
+    color: #64ffda;
+    text-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+    font-weight: bold;
+}
+
+.charging-text {
+    color: #64ffda;
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    opacity: 0.8;
+    margin-top: 5px;
+}
+
+/* Add new animations */
+@keyframes chargeBattery {
+    0% {
+        height: 0%;
+        background-position: 0% 0%;
+    }
+    50% {
+        height: 70%;
+    }
+    80% {
+        height: 90%;
+    }
+    100% {
+        height: 96%;
+        background-position: 0% 100%;
+    }
+}
+
+@keyframes batteryShine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.battery-segments {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    right: 3px;
+    bottom: 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 2px;
+}
+
+.segment {
+    height: 3px;
+    background: rgba(100, 255, 218, 0.2);
+    transform: scaleX(0.9);
+}
+/* Skills Grid Improved Layout */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.skill-card {
+    background: var(--card-background);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.skill-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 30px rgba(0,0,0,0.15);
+}
+
+.skill-card h3 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    position: relative;
+}
+
+.skill-card h3::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: var(--primary-color);
+}
+
+.skill-card p {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.skill-card p:last-child {
+    border-bottom: none;
+}
+
+.skill-card p:hover {
+    color: var(--primary-color);
+    transform: translateX(10px);
+    padding-left: 10px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .skills-grid {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+
+    .skill-card {
+        padding: 1.5rem;
+    }
+}
+
+/* Carousel Styles */
+.carousel {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.cards {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-start;
+    align-items: stretch;
+    transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+    padding: 20px 0;
+    will-change: transform;
+}
+
+.card {
+    position: relative;
+    flex: 0 0 320px;
+    max-width: 90vw;
+    background: rgba(255,255,255,0.05);
+    border-radius: 12px;
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.5s, opacity 0.5s, box-shadow 0.3s;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    cursor: pointer;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    max-height: 250px;
+    object-fit: cover;
+    display: block;
+}
+
+.card h3 {
+    margin: 10px 0;
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 10px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    font-size: 0.85rem;
+    text-align: left;
+}
+
+.card:hover .overlay {
+    transform: translateY(0);
+}
+
+.card.active {
+    transform: scale(1.05);
+    opacity: 1;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+}
+
+.card.prev, .card.next {
+    transform: scale(0.85);
+    opacity: 0.7;
+}
+
+.card.far {
+    display: none;
+}
+
+.nav {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.nav button {
+    pointer-events: auto;
+    background: var(--primary-color);
+    border: none;
+    color: white;
+    font-size: 18px;
+    padding: 10px 14px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    opacity: 0.8;
+}
+
+.nav button:hover {
+    background: var(--secondary-color);
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+.indicators {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    transition: background 0.3s, transform 0.3s;
+    cursor: pointer;
+}
+
+.indicator.active {
+    background: var(--primary-color);
+    transform: scale(1.2);
+}
+
+@media (max-width: 600px) {
+    .card {
+        flex: 0 0 90vw;
+        max-width: 90vw;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="loading-overlay" id="loadingOverlay">
+    <div class="battery-container">
+        <div class="battery">
+            <div class="battery-segments">
+                <!-- Will be populated by JavaScript -->
+            </div>
+            <div class="battery-level"></div>
+        </div>
+        <div class="percentage">0%</div>
+        <div class="charging-text">Charging...</div>
+    </div>
+</div>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">OUSSAMA SEMAMA</div>
+            <nav>
+                <button class="theme-toggle" aria-label="Toggle Dark Mode" title="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="#home">Home</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+                <div class="language-switcher">
+                    <button class="language-btn">
+                        <img width="20" height="20" src="https://img.icons8.com/fluency/48/usa-circular.png" alt="Current Language" class="current-flag">
+                        <span class="current-lang">EN</span>
+                    </button>
+                    <div class="language-options">
+                        <div class="language-option" data-lang="en">
+                            <img width="24" height="24" src="https://img.icons8.com/fluency/48/usa-circular.png" alt="English" class="flag">
+                            English
+                        </div>
+                        <div class="language-option" data-lang="fr">
+                            <img width="24" height="24" src="https://img.icons8.com/fluency/48/france-circular.png" alt="French" class="flag">
+                            Français
+                        </div>
+                        <div class="language-option" data-lang="es">
+                            <img width="24" height="24" src="https://img.icons8.com/color/48/spain-circular--v2.png" alt="Spanish" class="flag">
+                            Español
+                        </div>
+                    </div>
+                </div>
+                <a href="https://www.linkedin.com/in/oussama-semama" target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- home Section -->
+    <section id="home">
+        <div class="dynamic-background"></div>
+        <div class="container home-content">
+            <div class="text-content">
+                <h1 id="dynamicText">Hi, I'm Oussama SEMAMA</h1>
+                <p class="role">Electrical Engineering Student | Railway maintenance & technologies</p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="#contact" class="btn btn-outline">Hire Me</a>
+                </div>
+            </div>
+            <div class="profile-picture-container">
+                <img src="https://media.licdn.com/dms/image/v2/D4E03AQFJhEqNmpZWeg/profile-displayphoto-crop_800_800/B4EZiBzKpqGwAI-/0/1754524331295?e=1758153600&v=beta&t=xqL8mlwMC52sh-aUnq34WCAC2ggH_yi7pF3U3QVngGA" alt="Oussama SEMAMA" class="profile-picture">
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+    <div class="container">
+        <div class="section-title">
+            <h2>Mes Compétences</h2>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <i class="fas fa-code"></i>
+                <h3>Programmation</h3>
+                <p>Assembleur</p>
+                <p>C</p>
+                <p>C++</p>
+                <p>Python</p>
+                <p>MATLAB</p>
+                <p>VHDL</p>
+                <p>HTML</p>
+            </div>
+            
+            <div class="skill-card">
+                <i class="fas fa-laptop-code"></i>
+                <h3>Logiciels Maîtrisés</h3>
+                <p>Caneco BT</p>
+                <p>Proteus</p>
+                <p>Catia V5</p>
+                <p>MATLAB/Simulink</p>
+                <p>VS code</p>
+                <p>Multisim</p>
+                <p>MPLab</p>
+                <p>microC</p>
+                <p>PSIM</p>
+            </div>
+            
+            <div class="skill-card">
+                <i class="fas fa-file-alt"></i>
+                <h3>Microsoft Office</h3>
+                <p>Word</p>
+                <p>Excel</p>
+                <p>PowerPoint</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    
+    
+    
+    
+    
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Projects</h2>
+            </div>
+            <div class="carousel">
+                <div class="cards" id="cards"></div>
+                <div class="nav">
+                    <button id="prevBtn">◀</button>
+                    <button id="nextBtn">▶</button>
+                </div>
+                <div class="indicators" id="indicators"></div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+    .carousel {
+        position: relative;
+        width: 100%;
+        max-width: 1100px;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    .cards {
+        display: flex;
+        gap: 20px;
+        justify-content: flex-start;
+        align-items: stretch;
+        transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+        padding: 20px 0;
+        will-change: transform;
+    }
+
+    .card {
+        position: relative;
+        flex: 0 0 320px;
+        max-width: 90vw;
+        background: rgba(255,255,255,0.05);
+        border-radius: 12px;
+        overflow: hidden;
+        text-align: center;
+        transition: transform 0.5s, opacity 0.5s, box-shadow 0.3s;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        cursor: pointer;
+    }
+
+    .card img {
+        width: 100%;
+        height: auto;
+        max-height: 250px;
+        object-fit: cover;
+        display: block;
+    }
+
+    .card h3 {
+        margin: 10px 0;
+        font-size: 1rem;
+        color: var(--text-color);
+    }
+
+    .overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0,0,0,0.8);
+        color: white;
+        padding: 10px;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+        font-size: 0.85rem;
+        text-align: left;
+    }
+
+    .card:hover .overlay {
+        transform: translateY(0);
+    }
+
+    .card.active {
+        transform: scale(1.05);
+        opacity: 1;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+    }
+
+    .card.prev, .card.next {
+        transform: scale(0.85);
+        opacity: 0.7;
+    }
+
+    .card.far {
+        display: none;
+    }
+
+    .nav {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .nav button {
+        pointer-events: auto;
+        background: var(--primary-color);
+        border: none;
+        color: white;
+        font-size: 18px;
+        padding: 10px 14px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.3s;
+        opacity: 0.8;
+    }
+
+    .nav button:hover {
+        background: var(--secondary-color);
+        transform: scale(1.1);
+        opacity: 1;
+    }
+
+    .indicators {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 15px;
+        flex-wrap: wrap;
+    }
+
+    .indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.3);
+        transition: background 0.3s, transform 0.3s;
+        cursor: pointer;
+    }
+
+    .indicator.active {
+        background: var(--primary-color);
+        transform: scale(1.2);
+    }
+
+    @media (max-width: 600px) {
+        .card {
+            flex: 0 0 90vw;
+            max-width: 90vw;
+        }
+    }
+    </style>
+
+    <script>
+    const projects = [
+        { 
+            title: "Système de détection d’obstacles", 
+            img: "https://media.licdn.com/dms/image/v2/D4E22AQFcvycHxcpZfA/feedshare-shrink_1280/B4EZhDovLjGoAo-/0/1753481417928?e=1758153600&v=beta&t=jaMoNeiBXWbsSANnzQYOlKrXFOxOFQ9GUogsxt-CDuk", 
+            link: "https://www.linkedin.com/posts/oussama-semama_microcontroller-pic16f884a-ultrasonicsensor-activity-7356229567641972736-Sso5?utm_source=share&utm_medium=member_desktop&rcm=ACoAAERT5cQBsQBGGatbzqESOxd2jatMk9z0EJ0", 
+            desc: " projet électronique : un système de détection d’obstacles basé sur un microcontrôleur PIC16F884A, un capteur ultrasonique HC-SR04, et un affichage LCD 16x2. Pour plus de détaille cliquez sur l'image." 
+        },
+        
+        { 
+            title: "Interactive Portfolio", 
+            img: "https://media.istockphoto.com/id/1271072224/fr/photo/main-%C3%A0-laide-dun-ordinateur-portable-et-dun-%C3%A9cran-de-presse-pour-effectuer-une-recherche.webp?a=1&b=1&s=612x612&w=0&k=20&c=nVvfMn71stAa2NwlrWPh6RoRbcDLLbecGIUCkrDbocw=", 
+            link: "https://example.com/portfolio", 
+            desc: "Personal portfolio page under development." 
+        }
+    ].reverse();
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const cardsEl = document.getElementById("cards");
+        const indicatorsEl = document.getElementById("indicators");
+
+        projects.forEach((p, index) => {
+            const div = document.createElement("div");
+            div.className = "card";
+            div.innerHTML = `
+                <a href="${p.link}" target="_blank">
+                    <img src="${p.img}" alt="${p.title}">
+                </a>
+                <h3>${p.title}</h3>
+                <div class="overlay">${p.desc}</div>
+            `;
+            cardsEl.appendChild(div);
+
+            const dot = document.createElement("div");
+            dot.className = "indicator";
+            dot.addEventListener("click", () => {
+                current = index;
+                updateView();
+            });
+            indicatorsEl.appendChild(dot);
+        });
+
+        const cards = [...document.querySelectorAll(".card")];
+        const dots = [...document.querySelectorAll(".indicator")];
+        let current = 0;
+
+        function centerActiveCard() {
+            // Center the active card in the carousel
+            const carousel = document.querySelector('.carousel');
+            const activeCard = cards[current];
+            if (!activeCard) return;
+            const carouselRect = carousel.getBoundingClientRect();
+            const cardRect = activeCard.getBoundingClientRect();
+            const scrollLeft = cardsEl.scrollLeft || 0;
+            // Calculate offset to center the card
+            const offset = (activeCard.offsetLeft + activeCard.offsetWidth/2) - (carousel.offsetWidth/2);
+            cardsEl.style.transform = `translateX(${-offset}px)`;
+        }
+
+        function updateView() {
+            const n = cards.length;
+            cards.forEach((c, i) => {
+                c.classList.remove("prev", "active", "next", "far");
+                const pos = (i - current + n) % n;
+                if (pos === 0) c.classList.add("active");
+                else if (pos === 1) c.classList.add("next");
+                else if (pos === n - 1) c.classList.add("prev");
+                else c.classList.add("far");
+            });
+
+            dots.forEach((d, i) => {
+                d.classList.toggle("active", i === current);
+            });
+
+            centerActiveCard();
+        }
+
+        document.getElementById("nextBtn").onclick = () => {
+            current = (current + 1) % cards.length;
+            updateView();
+        };
+        
+        document.getElementById("prevBtn").onclick = () => {
+            current = (current - 1 + cards.length) % cards.length;
+            updateView();
+        };
+
+        let startX = 0;
+        cardsEl.addEventListener('touchstart', e => {
+            startX = e.touches[0].clientX;
+        });
+        
+        cardsEl.addEventListener('touchend', e => {
+            const diff = e.changedTouches[0].clientX - startX;
+            if (diff > 50) {
+                current = (current - 1 + cards.length) % cards.length;
+            } else if (diff < -50) {
+                current = (current + 1) % cards.length;
+            }
+            updateView();
+        });
+
+        // Click on card to center it
+        cards.forEach((card, i) => {
+            card.addEventListener('click', () => {
+                if (i !== current) {
+                    current = i;
+                    updateView();
+                }
+            });
+        });
+
+        // Responsive: recenter on resize
+        window.addEventListener('resize', () => {
+            centerActiveCard();
+        });
+
+        updateView();
+    });
+    </script>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Me</h2>
+            </div>
+            <form class="contact-form" id="contactForm">
+                <input type="text" id="name" placeholder="Your Name" required>
+                <input type="email" id="email" placeholder="Your Email" required>
+                <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background-color: #2c3e50; color: white; padding: 2rem 0; text-align: center;">
+        <div class="social-links" style="display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1rem;">
+            <a href="https://www.linkedin.com/in/oussama-semama" target="_blank" style="color: white; font-size: 1.5rem; transition: transform 0.3s ease;">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </div>
+        <p>&copy; 2025 Oussama SEMAMA. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+// Single source of truth for translations
+const translations = {
+    en: {
+        navHome: "Home",
+        navSkills: "Skills",
+        navProjects: "Projects",
+        navContact: "Contact",
+        greeting: "Hi, I'm Oussama SEMAMA",
+        role: "Electrical Engineering Student | Railway maintenance & technologies",
+        viewProjects: "View Projects",
+        hireMe: "Hire Me",
+        contactTitle: "Contact Me",
+        namePlaceholder: "Your Name",
+        emailPlaceholder: "Your Email",
+        messagePlaceholder: "Your Message",
+        sendMessage: "Send Message",
+        skillsTitle: "My Skills",
+        projectsTitle: "My Projects",
+        moreProjects: "More Projects",
+        searchProjects: "Search Projects",
+        allProjects: "All Projects",
+        noResults: "No projects found"
+    },
+    fr: {
+        navHome: "Accueil",
+        navSkills: "Compétences",
+        navProjects: "Projets",
+        navContact: "Contact",
+        greeting: "Bonjour, je suis Oussama SEMAMA",
+        role: "Étudiant en génie électrique | Maintenance et technologies ferroviaires ",
+        viewProjects: "Voir les Projets",
+        hireMe: "Embauchez-moi",
+        contactTitle: "Contactez-moi",
+        namePlaceholder: "Votre Nom",
+        emailPlaceholder: "Votre Email",
+        messagePlaceholder: "Votre Message",
+        sendMessage: "Envoyer",
+        skillsTitle: "Mes Compétences",
+        projectsTitle: "Mes Projets",
+        moreProjects: "Plus de Projets",
+        searchProjects: "Rechercher des Projets",
+        allProjects: "Tous les Projets",
+        noResults: "Aucun projet trouvé"
+    },
+    es: {
+        navHome: "Inicio",
+        navSkills: "Habilidades",
+        navProjects: "Proyectos",
+        navContact: "Contacto",
+        greeting: "Hola, soy Oussama SEMAMA",
+        role: "Estudiante de Ingeniería Eléctrica | Mantenimiento y tecnologías ferroviarias",
+        viewProjects: "Ver Proyectos",
+        hireMe: "Contrátame",
+        contactTitle: "Contáctame",
+        namePlaceholder: "Tu Nombre",
+        emailPlaceholder: "Tu Email",
+        messagePlaceholder: "Tu Mensaje",
+        sendMessage: "Enviar Mensaje",
+        skillsTitle: "Mis Habilidades",
+        projectsTitle: "Mis Proyectos",
+        moreProjects: "Más Proyectos",
+        searchProjects: "Buscar Proyectos",
+        allProjects: "Todos los Proyectos",
+        noResults: "No se encontraron proyectos"
+    }
+};
+
+// Translation manager
+const TranslationManager = {
+    // Elements to translate with their corresponding translation keys
+    elements: {
+        'a[href="#home"]': 'navHome',
+        'a[href="#skills"]': 'navSkills',
+        'a[href="#projects"]': 'navProjects',
+        'a[href="#contact"]': 'navContact',
+        '#dynamicText': 'greeting',
+        '.role': 'role',
+        '.btn-primary': 'viewProjects',
+        '.btn-outline': 'hireMe',
+        '#skills .section-title h2': 'skillsTitle',
+        '#projects .section-title h2': 'projectsTitle',
+        '#contact .section-title h2': 'contactTitle',
+        '#name': { type: 'placeholder', key: 'namePlaceholder' },
+        '#email': { type: 'placeholder', key: 'emailPlaceholder' },
+        '#message': { type: 'placeholder', key: 'messagePlaceholder' },
+        '#contactForm button': 'sendMessage'
+    },
+
+    changeLanguage(lang) {
+        if (!translations[lang]) return;
+
+        try {
+            // Update each element with its translation
+            Object.entries(this.elements).forEach(([selector, value]) => {
+                const element = document.querySelector(selector);
+                if (!element) return;
+
+                if (typeof value === 'object') {
+                    // Handle special cases like placeholders
+                    element[value.type] = translations[lang][value.key];
+                } else {
+                    // Handle regular text content
+                    element.textContent = translations[lang][value];
+                }
+            });
+
+            // Update language display and save preference
+            document.querySelector('.current-lang').textContent = lang.toUpperCase();
+            localStorage.setItem('selectedLanguage', lang);
+            document.documentElement.lang = lang;
+
+        } catch (error) {
+            console.error('Translation error:', error);
+        }
+    },
+
+    init() {
+        const savedLang = localStorage.getItem('selectedLanguage') || 'en';
+        this.changeLanguage(savedLang);
+
+        // Set up language switcher
+        document.querySelector('.language-btn').addEventListener('click', (e) => {
+            e.stopPropagation();
+            document.querySelector('.language-options').classList.toggle('show');
+        });
+
+        // Set up language options
+        document.querySelectorAll('.language-option').forEach(option => {
+            option.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const lang = option.getAttribute('data-lang');
+                this.changeLanguage(lang);
+                document.querySelector('.language-options').classList.remove('show');
+            });
+        });
+
+        // Close language options when clicking outside
+        document.addEventListener('click', () => {
+            document.querySelector('.language-options').classList.remove('show');
+        });
+    }
+};
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', () => {
+    TranslationManager.init();
+});
+
+// Place this at the start of your scripts
+const darkModeToggle = () => {
+    const root = document.documentElement;
+    const isDarkMode = root.classList.toggle('dark-mode');
+    const themeToggle = document.querySelector('.theme-toggle');
+    
+    themeToggle.innerHTML = isDarkMode ? 
+        '<i class="fas fa-sun"></i>' : 
+        '<i class="fas fa-moon"></i>';
+    
+    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+};
+
+// Initialize theme
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark-mode');
+        document.querySelector('.theme-toggle').innerHTML = '<i class="fas fa-sun"></i>';
+    }
+    
+    // Add theme toggle listener
+    document.querySelector('.theme-toggle').addEventListener('click', darkModeToggle);
+});
+
+// Update language switcher for mobile
+document.querySelector('.language-btn').addEventListener('click', (e) => {
+    e.stopPropagation();
+    const options = document.querySelector('.language-options');
+    options.classList.toggle('show');
+    
+    // Close when clicking outside
+    if (options.classList.contains('show')) {
+        const closeHandler = (event) => {
+            if (!event.target.closest('.language-switcher')) {
+                options.classList.remove('show');
+                document.removeEventListener('click', closeHandler);
+            }
+        };
+        setTimeout(() => {
+            document.addEventListener('click', closeHandler);
+        }, 0);
+    }
+});
+
+// Language switcher functionality
+function initLanguageSwitcher() {
+    const languageBtn = document.querySelector('.language-btn');
+    const languageOptions = document.querySelector('.language-options');
+    const languageItems = document.querySelectorAll('.language-option');
+
+    // Toggle language options
+    languageBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        languageOptions.classList.toggle('show');
+    });
+
+    // Handle language selection
+    languageItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const lang = item.getAttribute('data-lang');
+            changeLanguage(lang);
+            languageOptions.classList.remove('show');
+        });
+    });
+
+    // Close language options when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!languageBtn.contains(e.target)) {
+            languageOptions.classList.remove('show');
+        }
+    });
+
+    // Initialize with saved language
+    const savedLang = localStorage.getItem('selectedLanguage') || 'en';
+    changeLanguage(savedLang);
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', () => {
+    initLanguageSwitcher();
+    
+});
+
+// Contact Form Submission
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+    const userAgent = navigator.userAgent;
+
+    // Integrate Telegram Bot
+    const botToken = '8158795973:AAEy2u_ufS350NXwvWYs7iUBRYPua_PlQ2w';
+    const chatId = '6596508403';
+    const telegramMessage = `Name: ${name}\nEmail: ${email}\nMessage: ${message}\n\nDevice Info: ${userAgent}`;
+
+    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: chatId, text: telegramMessage })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.ok) {
+            alert('Your message has been sent!');
+        } else {
+            alert('There was an error sending your message. Please try again later.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('There was an error sending your message. Please try again later.');
+    });
+
+    // Reset form
+    this.reset();
+});
+
+// Add shared ProjectManager object
+window.ProjectManager = {
+    defaultProjects: [
+        {
+            id: 1,
+            title: 'E-Commerce Platform',
+            description: 'Full-stack e-commerce solution with React and Node.js',
+            category: 'web',
+            technologies: ['React', 'Node.js', 'MongoDB'],
+            status: 'completed'
+        },
+        {
+            id: 2,
+            title: 'Data Visualization Dashboard',
+            description: 'Interactive dashboard for real-time data analysis',
+            category: 'python',
+            technologies: ['D3.js', 'Python', 'Flask'],
+            status: 'active'
+        },
+        {
+            id: 3,
+            title: 'Social Media Analytics Tool',
+            description: 'AI-powered social media insights platform',
+            category: 'ai',
+            technologies: ['Machine Learning', 'React', 'Django'],
+            status: 'active'
+        }
+    ],
+
+    getAllProjects() {
+        const savedProjects = JSON.parse(localStorage.getItem('projects')) || [];
+        return [...this.defaultProjects, ...savedProjects];
+    },
+
+    getMainPageProjects() {
+        return this.getAllProjects().slice(0, 3);
+    }
+};
+
+// Add to your existing DOMContentLoaded event
+document.addEventListener('DOMContentLoaded', () => {
+    // ...existing initialization code...
+    
+    // Add navigation link to admin page for authorized users
+    const isAdmin = sessionStorage.getItem('adminLoggedIn');
+    if (isAdmin) {
+        const nav = document.querySelector('nav');
+        const adminLink = document.createElement('a');
+        adminLink.href = 'admin.html';
+        adminLink.textContent = 'Admin';
+        nav.appendChild(adminLink);
+    }
+});
+
+// Keep only this version of updateMainPageProjects and remove all others
+function updateMainPageProjects() {
+    const savedProjects = JSON.parse(localStorage.getItem('projects')) || [];
+    const allProjects = savedProjects.sort((a, b) => new Date(b.date) - new Date(a.date));
+    const projectsToShow = allProjects.slice(0, 3);
+
+    const projectsGrid = document.querySelector('.projects-grid');
+    projectsGrid.innerHTML = projectsToShow.map(project => {
+        const projectCard = `
+            <div class="project-card" style="cursor: ${project.projectLink ? 'pointer' : 'default'}">
+                <div class="project-image">
+                    ${project.image ? 
+                        `<img src="${project.image}" alt="${project.title}">` : 
+                        `<div style="height: 200px; background: var(--primary-color); display: flex; align-items: center; justify-content: center; color: white;">
+                            <span style="font-size: 2rem;">${project.title[0]}</span>
+                        </div>`
+                    }
+                </div>
+                <div class="project-details">
+                    <h3>
+                        ${project.title}
+                        ${project.projectLink ? '<i class="fas fa-external-link-alt" style="margin-left: 5px;"></i>' : ''}
+                    </h3>
+                    <p>${project.description}</p>
+                    <div class="project-tags">
+                        ${project.technologies.map(tech => `
+                            <span class="project-tag">${tech}</span>
+                        `).join('')}
+                    </div>
+                    ${project.projectLink ? 
+                        `<div class="project-link-hint" style="margin-top: 10px; font-size: 0.9em; color: var(--primary-color);">
+                            Click to view project <i class="fas fa-arrow-right"></i>
+                        </div>` : ''
+                    }
+                </div>
+            </div>
+        `;
+
+        return project.projectLink ? 
+            `<a href="${project.projectLink}" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
+                ${projectCard}
+            </a>` : 
+            projectCard;
+    }).join('');
+}
+
+// Remove all other updateMainPageProjects and updateProjectsSection functions
+// Keep only these event listeners:
+document.addEventListener('DOMContentLoaded', updateMainPageProjects);
+window.addEventListener('storage', updateMainPageProjects);
+window.addEventListener('projectsUpdated', updateMainPageProjects);
+
+document.addEventListener('DOMContentLoaded', () => {
+    const loadingText = document.querySelector('.loading-text');
+    const loadingMessages = [
+        'Initializing...',
+        'Loading Components...',
+        'Compiling Data...',
+        'Establishing Connection...',
+        'System Ready...'
+    ];
+    let messageIndex = 0;
+
+    const messageInterval = setInterval(() => {
+        loadingText.style.opacity = '0';
+        setTimeout(() => {
+            loadingText.textContent = loadingMessages[messageIndex];
+            loadingText.style.opacity = '1';
+            messageIndex = (messageIndex + 1) % loadingMessages.length;
+        }, 200);
+    }, 2000);
+
+    setTimeout(() => {
+        clearInterval(messageInterval);
+        const overlay = document.getElementById('loadingOverlay');
+        overlay.style.opacity = '0';
+        setTimeout(() => {
+            overlay.style.display = 'none';
+        }, 500);
+    }, 4000);
+});
+
+// Remove sessionStorage check to show loading every time
+window.addEventListener('beforeunload', () => {
+    document.getElementById('loadingOverlay').style.opacity = '1';
+    document.getElementById('loadingOverlay').style.display = 'flex';
+});
+
+function updateLanguageButton(lang) {
+    const flagSources = {
+        en: 'https://img.icons8.com/fluency/48/usa-circular.png',
+        fr: 'https://img.icons8.com/fluency/48/france-circular.png',
+        es: 'https://img.icons8.com/color/48/spain-circular--v2.png'
+    };
+    
+    const currentFlag = document.querySelector('.language-btn .current-flag');
+    if (currentFlag) {
+        currentFlag.src = flagSources[lang];
+        currentFlag.alt = lang.toUpperCase();
+    }
+}
+
+// Add this to your existing changeLanguage function
+document.querySelectorAll('.language-option').forEach(option => {
+    option.addEventListener('click', (e) => {
+    const overlay = document.getElementById('loadingOverlay');
+        const lang = option.getAttribute('data-lang');
+        updateLanguageButton(lang);
+        // ...existing language change code...
+    });
+});
+
+// Initialize with saved language
+const savedLang = localStorage.getItem('selectedLanguage') || 'en';
+updateLanguageButton(savedLang);
+
+document.addEventListener('DOMContentLoaded', () => {
+    const voltageValue = document.getElementById('voltageValue');
+    const currentValue = document.getElementById('currentValue');
+    const freqValue = document.getElementById('freqValue');
+    let voltage = 0;
+    let current = 0;
+    let freq = 0;
+    
+    const updateInterval = setInterval(() => {
+        voltage = Math.min(voltage + 5, 220);
+        current = Math.min(current + 25, 500);
+        freq = Math.min(freq + 10, 60);
+        
+        voltageValue.textContent = `${voltage}V`;
+        currentValue.textContent = `${current}mA`;
+        freqValue.textContent = `${freq}Hz`;
+        
+        if (voltage >= 220 && current >= 500 && freq >= 60) {
+            clearInterval(updateInterval);
+            setTimeout(() => {
+                document.getElementById('loadingOverlay').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loadingOverlay').style.display = 'none';
+                }, 500);
+            }, 1000);
+        }
+    }, 100);
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const percentage = document.querySelector('.percentage');
+    let count = 0;
+    
+    const interval = setInterval(() => {
+        count++;
+        percentage.textContent = count + '%';
+        
+        if (count >= 100) {
+            clearInterval(interval);
+            setTimeout(() => {
+                const overlay = document.getElementById('loadingOverlay');
+                overlay.style.opacity = '0';
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                }, 500);
+            }, 500);
+        }
+    }, 30);
+});
+document.addEventListener('DOMContentLoaded', () => {
+    // Add battery segments
+    const segments = document.querySelector('.battery-segments');
+    for (let i = 0; i < 20; i++) {
+        const segment = document.createElement('div');
+        segment.className = 'segment';
+        segments.appendChild(segment);
+    }
+
+    const percentage = document.querySelector('.percentage');
+    const batteryLevel = document.querySelector('.battery-level');
+    const chargingText = document.querySelector('.charging-text');
+    let count = 0;
+    
+    const interval = setInterval(() => {
+        count++;
+        percentage.textContent = `${count}%`;
+        batteryLevel.style.height = `${count}%`;
+        
+        // Update charging text every few seconds
+        if (count === 30) chargingText.textContent = "Almost there...";
+        if (count === 60) chargingText.textContent = "Nearly ready...";
+        if (count === 90) chargingText.textContent = "Just a moment...";
+        
+        if (count >= 100) {
+            clearInterval(interval);
+            chargingText.textContent = "Ready!";
+            setTimeout(() => {
+                const overlay = document.getElementById('loadingOverlay');
+                overlay.style.opacity = '0';
+                setTimeout(() => overlay.style.display = 'none', 500);
+            }, 500);
+        }
+    }, 30);
+});
+</script>
+</body>
+</html>

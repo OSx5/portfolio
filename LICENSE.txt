@@ -1,0 +1,5 @@
+All rights reserved.
+
+This repository and its contents are the property of OSx5.
+You may not copy, modify, distribute, or use this code or content
+for any purpose without explicit written permission.
