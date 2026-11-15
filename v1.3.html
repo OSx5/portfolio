@@ -2087,7 +2087,7 @@
                 <i class="fas fa-file-alt"></i>
                 <h3>Outils informatiques</h3>
                 <p>Microsoft Office</p>
-                <p>Entraînement de modèles ML/DL</p>
+                <p>Entraînement des modèles ML/DL</p>
                 <p>Utilisation de l'IA</p>
             </div>
         </div>
@@ -2258,6 +2258,18 @@
     <script>
     const projects = [
         { 
+            title: "Smart Home", 
+            img: "https://imgs.search.brave.com/XsypxgLk7OPHkLvHbQbjJqRucwkE1jx8RqXyg2uXUm8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMjI3/OTEyMjU5OC9waG90/by9zbWFydC1ob21l/LWF1dG9tYXRpb24t/ZGFzaGJvYXJkLmpw/Zz9zPTYxMng2MTIm/dz0wJms9MjAmYz1q/bkl6MTVBcEZIZWNU/X0lINHc4VG4xcUlF/ekFYLUtBMGh0cFRF/MVVBSGNVPQ", 
+            link: "", 
+            desc: "Contrôle intelligent d’une maison connectée via WI-FI et MQTT broker." 
+        },
+        { 
+            title: "Système de stabilisation d’un drone avec ESP32-WROOM", 
+            img: "https://media.licdn.com/dms/image/v2/D4E22AQFk6-SDPgnMAQ/feedshare-shrink_1280/B4EaAu9WoTHwAM-/0/1787494230854?e=1796256000&v=beta&t=3gSNqYYXsfyREgaWbTIqysdzR00V6copALnc0J2rDrM", 
+            link: "https://media.licdn.com/dms/image/v2/D4E22AQFk6-SDPgnMAQ/feedshare-shrink_1280/B4EaAu9WoTHwAM-/0/1787494230854?e=1796256000&v=beta&t=3gSNqYYXsfyREgaWbTIqysdzR00V6copALnc0J2rDrM", 
+            desc: "L’architecture générale repose sur une boucle  fermée. Le MPU6050 mesure l’état dynamique du drone. L’ESP32 acquiert les données du capteur, calcule les angles d’inclinaison, détermine l’erreur d’attitude, applique le correcteur PID puis génère des signaux PWM vers les ESC. Ces derniers modulent l’énergie fournie aux moteurs. La variation différentielle de poussée entre moteurs avant/arrière ou gauche/droite engendre le couple correctif recherché." 
+        },
+        { 
             title: "Détection d’anomalies dans les moteurs électriques synchrones avec l’IA", 
             img: "https://media.fluke.com/bda04a72-0c8c-4539-b084-b2e000fcbab0_original__size.jpg", 
             link: "https://lnkd.in/p/eBukRxVw", 
@@ -2265,7 +2277,7 @@
         },
         { 
             title: "Système de détection d’obstacles", 
-            img: "https://media.licdn.com/dms/image/v2/D4E22AQFcvycHxcpZfA/feedshare-shrink_1280/B4EZhDovLjGoAo-/0/1753481417928?e=1758153600&v=beta&t=jaMoNeiBXWbsSANnzQYOlKrXFOxOFQ9GUogsxt-CDuk", 
+            img: "https://media.licdn.com/dms/image/v2/D4E22AQFcvycHxcpZfA/feedshare-shrink_1280/B4EZhDovLjGoAo-/0/1753481417928?e=1796256000&v=beta&t=GKkf3h28HU1Njuaa2il9kml6H60DIxtoMlsGsOTI-08", 
             link: "https://www.linkedin.com/posts/oussama-semama_microcontroller-pic16f884a-ultrasonicsensor-activity-7356229567641972736-Sso5?utm_source=share&utm_medium=member_desktop&rcm=ACoAAERT5cQBsQBGGatbzqESOxd2jatMk9z0EJ0", 
             desc: " projet électronique : un système de détection d’obstacles basé sur un microcontrôleur PIC16F884A, un capteur ultrasonique HC-SR04, et un affichage LCD 16x2. Pour plus de détaille cliquez sur l'image." 
         },
@@ -2276,7 +2288,7 @@
             link: "https://example.com/portfolio", 
             desc: "Personal portfolio page under development." 
         }
-    ].reverse();
+    ];
 
     document.addEventListener('DOMContentLoaded', () => {
         const cardsEl = document.getElementById("cards");
@@ -2416,7 +2428,7 @@ const translations = {
         navProjects: "Projects",
         navContact: "Contact",
         greeting: "Hi, I'm Oussama SEMAMA",
-        role: "Electrical Engineering Student | Railway maintenance & technologies",
+        role: "Electrical Engineering Student",
         viewProjects: "View Projects",
         hireMe: "Hire Me",
         contactTitle: "Contact Me",
@@ -2437,7 +2449,7 @@ const translations = {
         navProjects: "Projets",
         navContact: "Contact",
         greeting: "Bonjour, je suis Oussama SEMAMA",
-        role: "Étudiant en génie électrique | Maintenance et technologies ferroviaires ",
+        role: "Étudiant en génie électrique",
         viewProjects: "Voir les Projets",
         hireMe: "Embauchez-moi",
         contactTitle: "Contactez-moi",
@@ -2458,7 +2470,7 @@ const translations = {
         navProjects: "Proyectos",
         navContact: "Contacto",
         greeting: "Hola, soy Oussama SEMAMA",
-        role: "Estudiante de Ingeniería Eléctrica | Mantenimiento y tecnologías ferroviarias",
+        role: "Estudiante de Ingeniería Eléctrica",
         viewProjects: "Ver Proyectos",
         hireMe: "Contrátame",
         contactTitle: "Contáctame",
